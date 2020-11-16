@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".InternalStorage">
+
+    <Button
+        android:id="@+id/actionBuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buat File" />
+
+    <Button
+        android:id="@+id/actionUbah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubah File" />
+
+    <Button
+        android:id="@+id/actionBaca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Baca File" />
+
+    <Button
+        android:id="@+id/actionHapus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hapus File" />
+
+    <EditText
+        android:id="@+id/edtInput"
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:padding="5dp" />
+
+</LinearLayout>
