@@ -44,6 +44,7 @@ public class EksternalStorage extends AppCompatActivity {
             public void onClick(View v) {
                 if(periksaIzinPenyimpanan()){
                     buatData();
+
                 }
             }
         });
