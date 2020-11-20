@@ -64,6 +64,7 @@ public class EksternalStorage extends AppCompatActivity {
 
                 if(periksaIzinPenyimpanan()){
                     ubahData();
+
                 }
             }
         });
