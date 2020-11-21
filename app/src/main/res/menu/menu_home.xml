@@ -2,9 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_tambah"
-        android:title="Tambah Data" />
-    <item
-        android:id="@+id/menu_data"
-        android:title="Lihat Data" />
+        android:id="@+id/Logout"
+        android:title="Keluar" />
 </menu>
