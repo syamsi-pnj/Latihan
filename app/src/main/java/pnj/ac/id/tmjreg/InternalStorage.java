@@ -1,18 +1,17 @@
 package pnj.ac.id.tmjreg;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 
 public class InternalStorage extends AppCompatActivity {
 
@@ -98,14 +97,25 @@ public class InternalStorage extends AppCompatActivity {
                Log.e("ERROR", ""+e.getMessage());
            }
 
-           edtInput.setText(text.toString());
+            String[] doc = text.toString().split(" ");
+
+            //String text1 = doc[0];
+            //String text2 = doc[1];
+            //String text3 = kata[2];
+           //text = text;
+           //edtInput.setText(text.toString());
         }
     }
 
     void ubahData() {
         String data = edtInput.getText().toString();
+        /*String data = edtInput.getText().toString();
+
+         */
+        //buat file baru
         File file = new File(getFilesDir(),FILENAME);
 
+        //isi file
         FileOutputStream outputStream = null;
         try {
             file.createNewFile();

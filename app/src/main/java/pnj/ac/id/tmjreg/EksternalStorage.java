@@ -19,11 +19,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.net.PasswordAuthentication;
 
 public class EksternalStorage extends AppCompatActivity {
 
-    Button actionBuat,actionUbah,actionBaca,actionHapus;
+    Button actionBuat,actionUbah,actionBaca,actionHapus,actionTambah;
     EditText edtInput;
     public static String FILENAME = "bacaan.txt";
     public static final int request_code = 100;
@@ -37,6 +36,7 @@ public class EksternalStorage extends AppCompatActivity {
         actionUbah = findViewById(R.id.actionUbah);
         actionBaca = findViewById(R.id.actionBaca);
         actionHapus = findViewById(R.id.actionHapus);
+        //actionTambah = findViewById(R.id.actionTambah);
         edtInput = findViewById(R.id.edtInput);
 
         actionBuat.setOnClickListener(new View.OnClickListener() {
@@ -77,10 +77,38 @@ public class EksternalStorage extends AppCompatActivity {
                 }
             }
         });
+
+        actionTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(periksaIzinPenyimpanan()){
+                    TambahData();
+                }
+            }
+        });
     }
 
     void buatData() {
 
+        String data = edtInput.getText().toString();
+        /*String data = edtInput.getText().toString();
+
+         */
+        File file = new File(Environment.getExternalStorageDirectory(),FILENAME);
+
+        FileOutputStream outputStream = null;
+        try {
+            file.createNewFile();
+            outputStream = new FileOutputStream(file,false);
+            outputStream.write(data.getBytes());
+            outputStream.flush();
+            outputStream.close();
+        }catch (Exception e){
+            Log.e("ERROR", ""+e.getMessage());
+        }
+    }
+
+    void TambahData() {
 
         String data = edtInput.getText().toString();
         File file = new File(Environment.getExternalStorageDirectory(),FILENAME);
@@ -88,7 +116,7 @@ public class EksternalStorage extends AppCompatActivity {
         FileOutputStream outputStream = null;
         try {
             file.createNewFile();
-            outputStream = new FileOutputStream(file,false);
+            outputStream = new FileOutputStream(file,true);
             outputStream.write(data.getBytes());
             outputStream.flush();
             outputStream.close();
