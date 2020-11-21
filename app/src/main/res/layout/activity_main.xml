@@ -11,10 +11,13 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/pnj"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="136dp"
+        android:layout_marginBottom="245dp"
         android:scaleType="fitCenter"
-        android:layout_centerInParent="true"
-        />
+        android:src="@drawable/pnj"
+        app:srcCompat="@drawable/lambang_tmj" />
 
 
 </RelativeLayout>
