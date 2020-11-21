@@ -16,8 +16,7 @@
         android:layout_marginTop="136dp"
         android:layout_marginBottom="245dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/pnj"
-        app:srcCompat="@drawable/lambang_tmj" />
+        android:src="@drawable/lambang_tmj"/>
 
 
 </RelativeLayout>

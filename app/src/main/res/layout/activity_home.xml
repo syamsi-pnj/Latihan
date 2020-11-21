@@ -32,4 +32,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Eksternal Storage" />
+
+    <Button
+        android:id="@+id/bruBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGIS DATA BARU" />
 </LinearLayout>

@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
-
+    public Button button;
     SharedPreferences preferences;
     TextView txtEmail, txtNama;
 
@@ -72,4 +72,19 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+  /*  @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+        button = (Button) findViewById(R.id.bruBtn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,TambahInternal.class);
+                startActivity(intent);
+            }
+        });*/
 }
