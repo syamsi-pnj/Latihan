@@ -65,6 +65,7 @@ public class EksternalStorage extends AppCompatActivity {
 
                 if(periksaIzinPenyimpanan()){
                     ubahData();
+
                 }
             }
         });
@@ -164,9 +165,12 @@ public class EksternalStorage extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode){
             case request_code:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(EksternalStorage.this, "Izin Berhasil", Toast.LENGTH_SHORT).show();
+                if(grantResults.length>0){
+                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(EksternalStorage.this, "Izin Berhasil", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
                 break;
         }
     }

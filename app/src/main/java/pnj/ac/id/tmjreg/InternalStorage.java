@@ -121,6 +121,7 @@ public class InternalStorage extends AppCompatActivity {
     void hapusData() {
         File file = new File(getFilesDir(), FILENAME);
         if(file.exists()) {
+
             file.delete();
         }
     }
