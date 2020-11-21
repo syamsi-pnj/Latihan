@@ -16,6 +16,12 @@
         android:text="Buat File" />
 
     <Button
+        android:id="@+id/actionTambah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah File" />
+
+    <Button
         android:id="@+id/actionUbah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
