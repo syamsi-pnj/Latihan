@@ -44,7 +44,6 @@ public class EksternalStorage extends AppCompatActivity {
             public void onClick(View v) {
                 if(periksaIzinPenyimpanan()){
                     buatData();
-
                 }
             }
         });
@@ -65,6 +64,7 @@ public class EksternalStorage extends AppCompatActivity {
 
                 if(periksaIzinPenyimpanan()){
                     ubahData();
+
                 }
             }
         });
@@ -101,25 +101,25 @@ public class EksternalStorage extends AppCompatActivity {
         File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
 
         if(file.exists()) {
-           StringBuilder text = new StringBuilder();
+            StringBuilder text = new StringBuilder();
 
-           try {
-               BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-               String line = bufferedReader.readLine();
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                String line = bufferedReader.readLine();
 
-               while (line !=null){
-                   text.append(line);
-                   line = bufferedReader.readLine();
-               }
+                while (line !=null){
+                    text.append(line);
+                    line = bufferedReader.readLine();
+                }
 
-               bufferedReader.close();
+                bufferedReader.close();
 
 
-           }catch (Exception e){
-               Log.e("ERROR", ""+e.getMessage());
-           }
+            }catch (Exception e){
+                Log.e("ERROR", ""+e.getMessage());
+            }
 
-           edtInput.setText(text.toString());
+            edtInput.setText(text.toString());
         }
     }
 
@@ -152,7 +152,7 @@ public class EksternalStorage extends AppCompatActivity {
                 return true;
             }else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, request_code);
-            return false;
+                return false;
             }
         }else {
             return  true;
@@ -164,9 +164,12 @@ public class EksternalStorage extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode){
             case request_code:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(EksternalStorage.this, "Izin Berhasil", Toast.LENGTH_SHORT).show();
+                if(grantResults.length>0){
+                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(EksternalStorage.this, "Izin Berhasil", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
                 break;
         }
     }
