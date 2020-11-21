@@ -4,19 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import pnj.ac.id.tmjreg.database.DatabaseHelper;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtBod,edtJamLahir,edtEmail,edtPassword,edtNama;
+    String nama, email, jam_lahir, bod, password, data;
     Button actionSimpan;
     Calendar calendar = Calendar.getInstance();
+    public static String FILENAME = "register.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +60,42 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 new TimePickerDialog(this, timeSetListener,calendar.get(Calendar.HOUR_OF_DAY),
                         calendar.get(Calendar.MINUTE),true).show();
                 break;
+            case R.id.actionSimpan:
+                if (edtNama.getText().toString().length() > 0 && edtEmail.getText().toString().length() > 0 && edtPassword.getText().toString().length()>0
+                        && edtBod.getText().toString().length()>0 && edtJamLahir.getText().toString().length() > 0){
+                    simpan();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Mohon Lengkapi Data", Toast.LENGTH_SHORT).show();
+                }
+                break;
 
+        }
+    }
+
+    void simpan(){
+        nama = edtNama.getText().toString();
+        email = edtEmail.getText().toString();;
+        jam_lahir = edtJamLahir.getText().toString();
+        bod = edtBod.getText().toString();
+        password = edtPassword.getText().toString();
+
+        data = email +" "+ password +" "+ nama +" "+  jam_lahir +" "+ bod;
+
+        //buat file baru
+        File file = new File(getFilesDir(),FILENAME);
+
+        //pemasukan isi file
+        FileOutputStream outputStream = null;
+        try {
+            file.createNewFile();
+            outputStream = new FileOutputStream(file,false);
+            outputStream.write(data.getBytes());
+            outputStream.flush();
+            outputStream.close();
+        }catch (Exception e){
+            Log.e("ERROR", ""+e.getMessage());
         }
     }
 
