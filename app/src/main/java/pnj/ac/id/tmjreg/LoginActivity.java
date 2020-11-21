@@ -58,9 +58,9 @@ public class LoginActivity extends AppCompatActivity {
                         //penyimpanan sharedpreferance
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("isLogin",true);
-                        //editor.putString("email", "Irmansvt@mail.com");
-                        //editor.putString("nim","1807421007");
-                        //editor.putString("nama","Irma Nisvita");
+                        //editor.putString("email", "dieganabel@mail.com");
+                        //editor.putString("nim","1807421009");
+                        //editor.putString("nama","Diegan Abledi");
                         //editor.putString("kelas", "TMJ5");
                         editor.commit();
                         finish();
