@@ -1,14 +1,13 @@
 package pnj.ac.id.tmjreg;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,23 +15,23 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import pnj.ac.id.tmjreg.database.DatabaseHelper;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtBod,edtJamLahir,edtEmail,edtPassword,edtNama;
-    String nama, email, jam_lahir, bod, password, data;
     Button actionSimpan;
     Calendar calendar = Calendar.getInstance();
-    public static String FILENAME = "register.txt";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("LatihanAndroid", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_register);
         edtNama = findViewById(R.id.edtNama);
         edtEmail = findViewById(R.id.edtEmail);
@@ -45,6 +44,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edtJamLahir.setOnClickListener(this);
         actionSimpan.setOnClickListener(this);
 
+        SQLiteDatabase database = new DatabaseHelper(this).getWritableDatabase();
+
+        Cursor cursor = database.rawQuery("SELECT * FROM tb_user WHERE id = ? ", new String[]{""+sharedPreferences.getInt("id",0)});
+        edtBod.setText(cursor.getString(2));
+        edtJamLahir.setText(cursor.getString(3));
+        edtEmail.setText(cursor.getString(4));
+        edtPassword.setText(cursor.getString(5));
+        edtNama.setText(cursor.getString(1));
+        cursor.moveToFirst();
+        cursor.close();
+        database.close();
     }
 
     @Override
@@ -64,8 +74,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if (edtNama.getText().toString().length() > 0 && edtEmail.getText().toString().length() > 0 && edtPassword.getText().toString().length()>0
                         && edtBod.getText().toString().length()>0 && edtJamLahir.getText().toString().length() > 0){
                     simpan();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(this, "Mohon Lengkapi Data", Toast.LENGTH_SHORT).show();
                 }
@@ -75,28 +83,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     void simpan(){
-        nama = edtNama.getText().toString();
-        email = edtEmail.getText().toString();;
-        jam_lahir = edtJamLahir.getText().toString();
-        bod = edtBod.getText().toString();
-        password = edtPassword.getText().toString();
+        SQLiteDatabase database = new DatabaseHelper(this).getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nama",edtNama.getText().toString());
+        contentValues.put("email",edtEmail.getText().toString());
+        contentValues.put("jam_lahir",edtJamLahir.getText().toString());
+        contentValues.put("bod",edtBod.getText().toString());
+        contentValues.put("password",edtPassword.getText().toString());
 
-        data = email +" "+ password +" "+ nama +" "+  jam_lahir +" "+ bod;
-
-        //buat file baru
-        File file = new File(getFilesDir(),FILENAME);
-
-        //pemasukan isi file
-        FileOutputStream outputStream = null;
-        try {
-            file.createNewFile();
-            outputStream = new FileOutputStream(file,false);
-            outputStream.write(data.getBytes());
-            outputStream.flush();
-            outputStream.close();
-        }catch (Exception e){
-            Log.e("ERROR", ""+e.getMessage());
+        long update = database.update("tb_user",contentValues,"id=?", new String[]{""+sharedPreferences.getInt("id",0)});
+        if (update != -1){
+            Toast.makeText(this,"Update Berhasil",Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this,"Update Gagal",Toast.LENGTH_SHORT).show();
         }
+
+        database.close();
     }
 
 
