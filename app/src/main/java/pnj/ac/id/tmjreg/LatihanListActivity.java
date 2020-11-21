@@ -24,9 +24,6 @@ public class LatihanListActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_latihan_list);
         listView = findViewById(R.id.listView);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-//                android.R.layout.simple_expandable_list_item_1,items);
-//        listView.setAdapter(adapter);
         adapterBerita = new AdapterBerita(this, R.layout.item_berita_layout);
         listView.setAdapter(adapterBerita);
         loadDataList();
