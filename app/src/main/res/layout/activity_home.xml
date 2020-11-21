@@ -8,28 +8,139 @@
     android:padding="20dp"
     tools:context=".HomeActivity">
 
-    <TextView
-        android:id="@+id/txtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 
-    <TextView
-        android:id="@+id/txtNama"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="TextView" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/actionInternal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Internal Storage" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/actionEksternalStorage"
+            <TextView
+                style="@style/TextContent.Black"
+                android:layout_width="162dp"
+                android:layout_height="94dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/Title"
+                android:textColor="@android:color/black"
+                android:textSize="36sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="97dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/pnj"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eksternal Storage" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextContent.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp" />
+
+            <TextView
+                style="@style/TextContent.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/Nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+                android:textSize="14sp" />
+
+            <TextView
+                style="@style/TextContent.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Lahir"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/TglLahir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:editable="false"
+                android:focusable="false"
+                android:inputType="text"
+                android:textSize="14sp" />
+
+            <TextView
+                style="@style/TextContent.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jam Lahir"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/JamLahir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:editable="false"
+                android:focusable="false"
+                android:inputType="text"
+                android:textSize="14sp" />
+
+            <TextView
+                style="@style/TextContent.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pesan"
+                android:textSize="14sp" />
+
+            <TextView
+                style="@style/TextContent"
+                android:layout_width="345dp"
+                android:layout_height="373dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:lineSpacingMultiplier="1"
+                android:text="@string/Content_text"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
 </LinearLayout>
