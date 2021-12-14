@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 public class InternalStorage extends AppCompatActivity {
 
     Button actionBuat,actionUbah,actionBaca,actionHapus;
-    EditText edtInput;
+    EditText edtInput,edtNamaFile;
     public static String FILENAME = "bacaan.txt";
 
     @Override
@@ -30,6 +30,7 @@ public class InternalStorage extends AppCompatActivity {
         actionBaca = findViewById(R.id.actionBaca);
         actionHapus = findViewById(R.id.actionHapus);
         edtInput = findViewById(R.id.edtInput);
+        edtNamaFile= findViewById(R.id.edtNamaFile);
 
         actionBuat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +63,7 @@ public class InternalStorage extends AppCompatActivity {
 
     void buatData() {
         String data = edtInput.getText().toString();
-        File file = new File(getFilesDir(),FILENAME);
+        File file = new File(getFilesDir(),edtNamaFile.getText().toString()+".txt");
 
         FileOutputStream outputStream = null;
         try {
@@ -84,13 +85,11 @@ public class InternalStorage extends AppCompatActivity {
 
            try {
                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-               String line = bufferedReader.readLine();
+               String line = null;
 
-               while (line !=null){
-                   text.append(line);
-                   line = bufferedReader.readLine();
+               while ((line =bufferedReader.readLine()) !=null){
+                   text.append(line).append("\n");
                }
-
                bufferedReader.close();
 
 
@@ -104,7 +103,7 @@ public class InternalStorage extends AppCompatActivity {
 
     void ubahData() {
         String data = edtInput.getText().toString();
-        File file = new File(getFilesDir(),FILENAME);
+        File file = new File(getFilesDir(),edtNamaFile.getText().toString()+".txt");
 
         FileOutputStream outputStream = null;
         try {

@@ -33,6 +33,13 @@
         android:layout_height="wrap_content"
         android:text="Hapus File" />
 
+
+    <EditText
+        android:id="@+id/edtNamaFile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+
     <EditText
         android:id="@+id/edtInput"
         android:layout_width="match_parent"
